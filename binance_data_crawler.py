@@ -109,9 +109,9 @@ def iterate_year(year):
             )
             button_download.click()
             time.sleep(2)
-            shutil.move(f'/path/to/Downloads/{name}-1m-{start_date}.zip', f'/path/to/Binance_Backtester/data')
-            unzip_file(f'/path/to/Binance_Backtester/data/{name}-1m-{start_date}.zip')
-            os.remove(f'/path/to/Binance_Backtester/data/{name}-1m-{start_date}.zip')
+            shutil.move(f'{your_download_folder}/{name}-1m-{start_date}.zip', f'{current_folder}/data')
+            unzip_file(f'{current_folder}/data/{name}-1m-{start_date}.zip')
+            os.remove(f'{current_folder}/data/{name}-1m-{start_date}.zip')
             if first_loop:
                 first_loop = False
 
@@ -119,10 +119,14 @@ chromedriver_autoinstaller.install()
 
 driver = webdriver.Chrome()
 driver.get("https://www.binance.com/en/landing/data" )
+driver.maximize_window()
 time.sleep(3)
 
 name = "BTCUSDT"
 backtesting_folder = './data'
+current_folder = os.getcwd()
+# Set your download folder
+your_download_folder = '/path/to/downloads'
      
 if not os.path.isdir(backtesting_folder):
     os.mkdir(backtesting_folder)
