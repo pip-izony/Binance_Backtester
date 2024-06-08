@@ -54,6 +54,7 @@ if __name__ == "__main__":
                 file_path = f"./data/BTCUSDT-1m-{year}-{month:02d}-{day:02d}.csv"
                 df = read_binance_data(file_path)
                 # Batch size means how many candles you want to process at once
+                # if batch_size = 20, then you will process 20 minutes at once
                 batch_size = 20
                 for index in range(len(df) - batch_size + 1):
                     row = df.iloc[index:index + batch_size]
